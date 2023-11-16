@@ -4,6 +4,9 @@ import { FiSettings } from "react-icons/fi";
 import { TfiPrinter,TfiAnnouncement } from "react-icons/tfi";
 import Button from '../components/ui/Button';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Home = () => {
   const contact = [
@@ -18,7 +21,42 @@ const Home = () => {
     },
   ];
 
-  
+  const images = [
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/logo1.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/dealine-logo-6.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Vector-Smart-Object.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/dealine-logo-7.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Logo.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Logo-copy-4.png',
+    'https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/dealine-logo-7.png',
+  ];
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000, 
+    responsive: [
+      {
+        breakpoint: 768, 
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024, 
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -27,9 +65,45 @@ const Home = () => {
       {/* Master Crew */}
       {/* Team */}
       {/* Cards */}
-      {/* Partners */}
+      {/* Partners */}{/* Slider */}
+      <section style={{backgroundImage:'url("https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/BG-copy-3.png?id=473")'}}>
+        <div className='mx-auto bg-white rounded-lg w-full'>
+
+        </div>
       {/* Slider */}
+      <Slider {...settings} className='py-16'>
+      {images.map((image, index) => (
+        <div key={index}>
+          <img src={image} alt={`Slide ${index + 1}`}  className='mx-auto'/>
+        </div>
+      ))}
+    </Slider>
+      </section>
       {/* Newsletter */}
+      <section>
+      <div className='container-fluid h-80 flex items-center justify-center bg-center' style={{backgroundImage:'url("https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Group-10-copy-4.jpg?id=477")',flexDirection: 'column'}}>
+      <div className='grid grid-cols-1 md:grid-cols-2  w-full md:ps-56 md:pe-20 px-10 md:px-0'>
+  <div className='flex  justify-start items-center mb-7 md:mb-0 '>
+    <h1 className='text-5xl font-extrabold text-white flex'>
+      Subscribe to <br />our newsletter
+    </h1>
+  </div>
+  <div className='md:flex justify-center items-center'>
+    <input 
+      type="search" 
+      name="search_box" 
+      placeholder='Enter your email'
+      className='px-7 py-3 placeholder:hover:text-gray-200 w-full rounded-full italic'
+    />
+    <Button className='bg-teal-400 text-white font-extrabold px-7 py-3 rounded-full mt-6 md:mt-0 md:ml-4 hover:bg-teal-300 '>send</Button>
+  </div>
+</div>
+
+
+
+</div>
+
+      </section>
       {/* Contact Us */}
       <section>
         <div className='container mx-auto my-10'>
