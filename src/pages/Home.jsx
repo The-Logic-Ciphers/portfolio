@@ -116,6 +116,28 @@ const Home = () => {
   description:"Highly experienced professional that is going to make amazing things for you "
 },
   ];
+
+  const teamcards = [
+    {
+      img: "https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Rectangle-647-copy-73.jpg?id=624",
+      title1: "DESIGNER",
+      title2: "web design",
+      description: "If you are an enthusiastic person with a pinch of talent, don't hesitate to join our team",
+    },
+    {
+      img: "http://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Rectangle-647-copy-7.jpg?id=623",
+      title1: "MARKETING",
+      title2: "marketing specialist",
+      description: "If you are an enthusiastic person with a pinch of talent, don’t hesitate to join our team",
+    },
+    {
+      img: "https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/Rectangle-647-copy-72.jpg?id=625",
+      title1: "DEVELOPER",
+      title2: "front end",
+      description: "If you are an enthusiastic person with a pinch of talent, don’t hesitate to join our team",
+    },
+  ];
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -141,6 +163,14 @@ const Home = () => {
       },
     ],
   };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+  };
 
   const currentCard = SliderCards[index];
   const handlePrevious = () => {
@@ -162,21 +192,41 @@ const Home = () => {
       {/* Counter */}
       {/* Master Crew */}
       <section>
-        <div className="container">
-          <div className="flex">
-            <div className="bg-cover bg-center" style={{backgroundImage:'url("https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/ma2.jpg?id=616")'}}>
-              <h1 className="text-6xl font-extrabold">MASTER</h1>
-              <h1 className="text-6xl font-extrabold">CREW</h1>
-              <p className="text-xl font-light text-gray-600">Our professional team will be</p>
-              <p className="text-xl font-light text-gray-600">happy to bring amazing ideas</p>
-              <p className="text-xl font-light text-gray-600">and projects to life</p>
-            </div>
+      <div className="container ms-10">
+          <div className="grid md:grid-cols-2 grid-cols-1 ">
+          <div className="bg-cover bg-center px-5 pt-24" style={{backgroundImage:'url("https://jevelin.shufflehound.com/creative-agency/wp-content/uploads/sites/24/2018/09/ma2.jpg?id=616")'}}>
+  <h1 className="text-6xl font-extrabold">MASTER</h1>
+  <h1 className="text-6xl font-extrabold">CREW</h1>
+  <p className="text-xl font-light text-gray-600 mt-3">Our professional team will be</p>
+  <p className="text-xl font-light text-gray-600">happy to bring amazing ideas</p>
+  <p className="text-xl font-light text-gray-600">and projects to life</p>
+</div>       
+      <Slider {...settings}>
+        {teamcards.map((items, index) => (
+          <div className="flex-col flex items-center" key={index}>
+            <Cards className="h-full w-full" style={{ boxShadow: "0 15px 25px -7px rgba(0,0,0,.09), 0 -12px 10px -10px rgba(0,0,0,.04)"}}>
+              <div className="flex">
+                <div className="relative">
+                  <img className="w-full h-full object-cover" src={items.img} alt="" />
+                  <Button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full py-3 px-6 hover:bg-blue-800 hover:text-white text-blue-800 outline-none">
+                    <Link to="/contact" className="text-xs font-bold">Join now!</Link>
+                  </Button>
+                </div>
+                <div className="pt-20 px-10">
+                  <h2 className="text-lg font-bold">{items.title1}</h2>
+                  <h2 className="text-base font-light mt-3" style={{ color: "#00B49D" }}>{items.title2}</h2>
+                  <p className="text-sm font-extralight text-gray-400 w-56 mt-10">{items.description}</p>
+                </div>
+              </div>
+            </Cards>
           </div>
-        </div>
+        ))}
+      </Slider>
+      </div></div>
       </section>
       {/* Team */}
       <section>
-      <div className="container">
+      <div className="container mt-36">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-16 ps-16">
         {teamcard.map((items,index)=>(
         <Cards key={index} className="w-full"  style={{ boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.24)" }}>
@@ -192,7 +242,7 @@ const Home = () => {
         ))}
       </div>
       <div className="mt-16 flex justify-center mb-36">
-        <Button className="px-10 py-5 rounded-full bg-teal-400 hover:bg-teal-300 "  ><Link className="text-xs font-bold text-white ">Meet the team </Link></Button>
+        <Button className="px-10 py-5 rounded-full bg-teal-400 hover:bg-teal-300 outline-none"  ><Link to="/team" className="text-xs font-bold text-white ">Meet the team </Link></Button>
       </div>
     </div>
       </section>
@@ -257,18 +307,18 @@ const Home = () => {
               </div>
             </div>
             <div className="controls flex justify-center mt-10">
-              <button
+              <Button
                 onClick={handlePrevious}
                 className="text-5xl focus:outline-none"
               >
                 <BsChevronLeft className="text-gray-400" size={32} />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleNext}
                 className="text-5xl focus:outline-none"
               >
                 <BsChevronRight className="text-gray-400 font-thin" size={32} />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -307,7 +357,7 @@ const Home = () => {
                 className="px-7 py-3 placeholder:hover:text-gray-200 md:w-full rounded-full italic focus:outline-none"
               />
               <div>
-                <Button className="bg-teal-400 text-white font-extrabold px-7 py-3 rounded-full mt-6 md:mt-0 md:ml-4 hover:bg-teal-300 ">
+                <Button className="bg-teal-400 text-white font-extrabold px-7 py-3 rounded-full mt-6 md:mt-0 md:ml-4 hover:bg-teal-300 outline-none">
                   send
                 </Button>
               </div>
@@ -357,7 +407,7 @@ const Home = () => {
             ))}
           </div>
           <div className="flex justify-center mb-36 mt-11 ">
-            <Button className="bg-orange-600 rounded-full py-5 px-9 hover:bg-orange-400">
+            <Button className="bg-orange-600 rounded-full py-5 px-9 hover:bg-orange-400 outline-none">
               <Link to="/contact" className="font-bold text-sm text-white">
                 Get in touch!
               </Link>

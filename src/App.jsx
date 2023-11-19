@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import Home from './pages/Home'
 import Contacts from "./pages/Contacts";
+import Rough from "./Rough";
+import Team from "./pages/Team";
 
 
 const App = () => {
@@ -15,6 +17,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/contact" element={<Contacts/>} />
+              <Route path="/team" element={<Team/>} />
+            {/* <Route path="/" element={<Rough/>} /> */}
             </Routes>
       </Router>
       <Footer />
